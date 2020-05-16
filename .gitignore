@@ -13,3 +13,5 @@ version.h
 config.h
 *build-*/
 work/
+build/
+*.kdev4
