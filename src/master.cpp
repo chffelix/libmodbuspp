@@ -163,6 +163,10 @@ namespace Modbus {
       case Rtu:
         (void) addSlave (Broadcast);
         break;
+
+      case RtuTcp:
+        (void) addSlave (Broadcast);
+        break;
     }
   }
 

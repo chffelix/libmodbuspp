@@ -16,6 +16,7 @@
  */
 #include <modbuspp/rtulayer.h>
 #include <modbuspp/tcplayer.h>
+#include <modbuspp/rtutcplayer.h>
 #include <modbuspp/message.h>
 #include "device_p.h"
 #include "config.h"
@@ -459,6 +460,10 @@ namespace Modbus {
 
       case Rtu:
         backend = new RtuLayer (connection, settings);
+        break;
+
+      case RtuTcp:
+        backend = new RtuTcpLayer (connection, settings);
         break;
 
       default:

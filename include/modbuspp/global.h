@@ -55,6 +55,13 @@ namespace Modbus {
      * used for communications over TCP IPv4 and IPv6 networks.
      */
     Tcp,
+    /**
+     * @brief RTU-TCP backend
+     *
+     * The RTU-TCP PI (Protocol Independent) backend implements a Modbus variant
+     * used for communications using RTU datagrams over TCP IPv4 and IPv6 networks.
+     */
+    RtuTcp,
     NoNet = Unknown  ///< Unknown network backend
   };
 
