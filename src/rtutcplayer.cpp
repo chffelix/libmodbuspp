@@ -59,28 +59,15 @@ namespace Modbus {
   int RtuTcpLayer::sendRawMessage (const Message * msg) {
     PIMP_D (RtuTcpLayer);
 
-    return send (modbus_get_socket (d->ctx), msg->adu(), msg->aduSize(),
-                 MSG_NOSIGNAL);
+    //TODO: Implement based on inheritance from 'TcpLayer'? (Should use a TCP socket)
+    throw std::domain_error ("Method 'sendRawMessage' not yet implemented for 'RtuTcp' backend!");
   }
 
   // ---------------------------------------------------------------------------
   bool RtuTcpLayer::prepareToSend (Message & msg) {
 
-    if (msg.net() == Tcp && msg.size() >= 1) {
-      PIMP_D (RtuTcpLayer);
-
-      uint8_t * adu = msg.adu();
-      uint16_t s = msg.size() + 1;
-
-      if (!msg.isResponse()) {
-        adu[2] = 0;
-        adu[3] = 0;
-      }
-      adu[4] = s >> 8;
-      adu[5] = s & 0xFF;
-      return true;
-    }
-    return false;
+    //TODO: Implement based on inheritance from 'RtuLayer'? (Datagram is the same as RTU, with CRC)
+    throw std::domain_error ("Method 'prepareToSend' not yet implemented for 'RtuTcp' backend!");
   }
 
   // ---------------------------------------------------------------------------

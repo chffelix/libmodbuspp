@@ -210,6 +210,17 @@ namespace Modbus {
   }
 
   // ---------------------------------------------------------------------------
+  RtuTcpLayer & Device::rtu_tcp() {
+
+    if (net() == RtuTcp) {
+      PIMP_D (Device);
+
+      return * reinterpret_cast<RtuTcpLayer *> (d->backend);
+    }
+    throw std::domain_error ("Error: Unable to return RTU-TCP layer !");
+  }
+
+  // ---------------------------------------------------------------------------
   bool Device::setResponseTimeout (const Timeout & t) {
 
     if (isValid()) {
@@ -499,7 +510,7 @@ namespace Modbus {
 
     if (addr < 0 && backend != 0) {
 
-      return backend->net() == Rtu ? Broadcast : TcpSlave;
+      return (backend->net() == Rtu || backend->net() == RtuTcp) ? Broadcast : TcpSlave;
     }
     return addr;
   }

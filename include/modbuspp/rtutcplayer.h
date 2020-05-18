@@ -30,13 +30,13 @@ namespace Modbus {
    * An instance of this class is created by the constructor @b Device::Device()
    * of the @b Device class (or its derived classes) if the RTU-TCP layer is selected.
    *
-   * Access to this instance is done using the Device::tcp() method.
+   * Access to this instance is done using the Device::rtu_tcp() method.
    *
    * @author Pascal JEAN, aka epsilonrt
    * @copyright GNU Lesser General Public License
    *
    * @sa Device::Device()
-   * @sa Device::tcp()
+   * @sa Device::rtu_tcp()
    */
   class RtuTcpLayer : public NetLayer {
 

@@ -25,6 +25,7 @@ namespace Modbus {
   class NetLayer;
   class RtuLayer;
   class TcpLayer;
+  class RtuTcpLayer;
   class Message;
 
   /**
@@ -44,7 +45,7 @@ namespace Modbus {
        *
        * Constructs a Modbus device for the @b net network.
        *
-       * For the Tcp backend :
+       * For the Tcp or RtuTcp backends :
        * - @b connection specifies the host name or IP
        * address of the host to connect to, eg. "192.168.0.5" , "::1" or
        * "server.com". A NULL value can be used to listen any addresses in server mode,
@@ -227,7 +228,7 @@ namespace Modbus {
        *
        * in RTU mode, this function returns the same value as isOpen().
        *
-       * in TCP mode, this function returns true if a peer-to-peer TCP
+       * in TCP or RTU-TCP mode, this function returns true if a peer-to-peer TCP
        * connection is currently established. Indeed, in server mode (slave),
        * calling the open() function puts the Device in passive waiting mode,
        * so that it is open but not connected. It is when a client connects
@@ -393,6 +394,14 @@ namespace Modbus {
       TcpLayer & tcp();
 
       /**
+       * @brief underlying RTU-TCP layer (backend)
+       *
+       * This function shall return the RTU-TCP layer if it is the layer used by
+       * the device. If it does not, a @b std::domain_error exception is thrown.
+       */
+      RtuTcpLayer & rtu_tcp();
+
+      /**
        * @brief underlying backend
        */
       NetLayer & backend() const;
@@ -403,7 +412,7 @@ namespace Modbus {
        * This function can be used to send message not handled by the library.
        * The message is transmitted "raw", without any modification if 
        * @b prepareBefore is false, otherwise the message is modified to add a 
-       * header (for TCP-IP) or a CRC (for RTU).
+       * header (for TCP-IP) or a CRC (for RTU or RTU-TCP).
        * 
        * @return The function shall return the full message length, if successful. 
        * Otherwise it shall return -1 and set errno
