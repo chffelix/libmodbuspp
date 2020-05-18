@@ -131,10 +131,10 @@ namespace Modbus {
        * This function shall add a slave with the @b slaveAddr value.
        *
        * The behavior depends of network and the role of the device:
-       * - @b RTU: Define the slave ID of the remote device to talk in master
-       *  mode or set the internal slave ID in slave mode. According to the
-       *  protocol, a Modbus device must only accept message holding its slave
-       *  number or the special broadcast number.
+       * - @b RTU or @b RTU-TCP: Define the slave ID of the remote device to
+       *  talk in master mode or set the internal slave ID in slave mode.
+       *  According to the protocol, a Modbus device must only accept message
+       *  holding its slave number or the special broadcast number.
        * - @b TCP: The slave number is only required in TCP if the message must
        *  reach a device on a serial link. Some not compliant devices or
        *  software (such as modpoll) uses the slave ID as unit identifier,

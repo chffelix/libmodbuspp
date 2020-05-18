@@ -54,7 +54,7 @@ namespace Modbus {
        *
        * Constructs a Modbus router for the @b net network (outside).
        *
-       * For the Tcp backend :
+       * For the Tcp or RtuTcp backends :
        * - @b connection specifies the host name or IP
        * address of the host to connect to, eg. "192.168.0.5" , "::1" or
        * "server.com". A NULL value can be used to listen any addresses in server mode,
@@ -183,7 +183,7 @@ namespace Modbus {
       /**
        * @brief Adds a master for the @b net network (inside).
        *
-       * For the Tcp backend :
+       * For the Tcp or RtuTcp backends :
        * - @b connection specifies the host name or IP
        * address of the host to connect to, eg. "192.168.0.5" , "::1" or
        * "server.com". A NULL value can be used to listen any addresses in server mode,

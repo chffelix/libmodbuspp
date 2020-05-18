@@ -69,7 +69,7 @@ namespace Modbus {
        *
        * Constructs a Modbus master for the @b net network.
        *
-       * For the Tcp backend :
+       * For the Tcp or RtuTcp backends :
        * - @b connection specifies the host name or IP
        * address of the host to connect to, eg. "192.168.0.5" , "::1" or
        * "server.com". A NULL value can be used to listen any addresses in server mode,
@@ -204,10 +204,10 @@ namespace Modbus {
        * This function shall add a slave with the @b slaveAddr value.
        *
        * The behavior depends of network and the role of the device:
-       * - @b RTU: Define the slave ID of the remote device to talk in master
-       *  mode or set the internal slave ID in slave mode. According to the
-       *  protocol, a Modbus device must only accept message holding its slave
-       *  number or the special broadcast number.
+       * - @b RTU or @b RTU-TCP : Define the slave ID of the remote device to
+       *  talk in master mode or set the internal slave ID in slave mode.
+       *  According to the protocol, a Modbus device must only accept message
+       *  holding its slave number or the special broadcast number.
        * - @b TCP: The slave number is only required in TCP if the message must
        *  reach a device on a serial link. Some not compliant devices or
        *  software (such as modpoll) uses the slave ID as unit identifier,
@@ -217,7 +217,7 @@ namespace Modbus {
        *
        *  The special value @b TcpSlave (255) can be used in TCP mode
        *  to restore the default value.
-       * .
+       *
        *
        * @return the slave by reference
        * @sa slave()
@@ -230,8 +230,8 @@ namespace Modbus {
        * The slave must have been added with @b addSlave() else a
        * std::out_of_range exception is thrown.
        *
-       * If the Device that drives the slave to an RTU backend, we can access
-       * to the general call through the slave at address 0
+       * If the Device that drives the slave to an RTU or RTU-TCP backend,
+       * we can access to the general call through the slave at address 0
        * (added by the constructor).
        *
        * If the Device that drives the slave to a TCP backend, we can access to
@@ -250,8 +250,8 @@ namespace Modbus {
        * The slave must have been added with @b addSlave() else a
        * a nullptr is returned.
        *
-       * If the Device that drives the slave to an RTU backend, we can access
-       * to the general call through the slave at address 0
+       * If the Device that drives the slave to an RTU or RTU-TCP backend,
+       * we can access to the general call through the slave at address 0
        * (added by the constructor).
        *
        * If the Device that drives the slave to a TCP backend, we can access to

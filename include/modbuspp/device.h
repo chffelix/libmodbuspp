@@ -124,7 +124,7 @@ namespace Modbus {
        *
        * This function does nothing if isValid() is true and returns false.
        *
-       * For the Tcp backend :
+       * For the Tcp or RtuTcp backends :
        * - @b connection specifies the host name or IP
        * address of the host to connect to, eg. "192.168.0.5" , "::1" or
        * "server.com". A NULL value can be used to listen any addresses in server mode,
